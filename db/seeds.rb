@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+Customer.create
+
+r = Restaurant.create(name:"Dominos", :opens_at => "9:00", :closes_at => "19:00")
+(0..9).each do |i|
+  r.tables.create
+end
