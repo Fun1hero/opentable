@@ -1,24 +1,34 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+App has 4 models: Customer, Restaurant, Table, Reservation
 
-Things you may want to cover:
+To book a table first you have to create Restaurant
 
-* Ruby version
+```
+restaurant = Restaurant.create(name:"Dominos", :opens_at => "9:00", :closes_at => "19:00")
+```
 
-* System dependencies
+Than you have to add tables to restaurant
 
-* Configuration
+```
+(0..9).each do |i|
+  restaurant.tables.create
+end
+```
 
-* Database creation
+Also you have to create Customer to be able to book a table
 
-* Database initialization
+```
+c = Customer.create
+```
 
-* How to run the test suite
+Finally to book a table create Reservation
+Grab table:  
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+t = Table.first
+```
 
-* Deployment instructions
-
-* ...
+```
+reservation = Reservation.create(:customer => c, :table_id => t.id, :starts_at => Time.now.beginning_of_hour + 1.hour, :ends_at => Time.now.beginning_of_hour + 2.hours)
+```
